@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -24,7 +25,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
-        //SetCurrentCamera();
+        SetCurrentCamera();
 
     }
 
@@ -33,6 +34,25 @@ public class PlayerLocomotion : MonoBehaviour
     {
         Locomotion();
         RotateAndLook();
+        PerspectiveCheck();
+
+    }
+
+    void SetCurrentCamera()
+    {
+        SwitchPerspective switchPerspective = GetComponent<SwitchPerspective>();
+        if(switchPerspective.GetPerspective() == SwitchPerspective.Perspective.First)
+        {
+            playerContainer = gameObject.transform.Find("Container1P");
+            cameraContainer = playerContainer.transform.Find("Camera1PContainer");
+        }
+        else
+        {
+            playerContainer = gameObject.transform.Find("Container3P");
+            cameraContainer = playerContainer.transform.Find("Camera3PContainer");
+        }
+        
+
     }
 
     void Locomotion()
@@ -43,7 +63,20 @@ public class PlayerLocomotion : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
 
-            //ToDo Jumping/Crouching
+            if(Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
+            if(Input.GetKey(KeyCode.C))
+            {
+                characterController.height = 0.65f;
+                characterController.center = new Vector3(0f, 0.5f, 0f);
+            }
+            else
+            {
+                characterController.height = 1.8f;
+                characterController.center = new Vector3(0f, 0.9f, 0f);
+            }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
@@ -61,4 +94,24 @@ public class PlayerLocomotion : MonoBehaviour
         cameraContainer.transform.localRotation = Quaternion.Euler(rotateY, 0f, 0f);
     }
   
+    void PerspectiveCheck()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            SwitchPerspective switchPerspective = GetComponent<SwitchPerspective>();
+            if(switchPerspective != null)
+            {
+                if(switchPerspective.GetPerspective() == SwitchPerspective.Perspective.First)
+                {
+                    switchPerspective.SetPerspective(SwitchPerspective.Perspective.Third);
+                }
+                else
+                {
+                    switchPerspective.SetPerspective(SwitchPerspective.Perspective.First);
+                }
+
+                SetCurrentCamera();
+            }
+        }
+    }
 }
