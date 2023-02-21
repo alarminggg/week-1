@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 4160662820636352801}
   - component: {fileID: 4160662820636352803}
   - component: {fileID: 4160662820636352802}
+  - component: {fileID: 8890448893713719551}
   m_Layer: 6
   m_Name: PlayerObject
   m_TagString: Player
@@ -251,7 +252,7 @@ Transform:
   - {fileID: 4160662820524697697}
   - {fileID: 4160662820885840176}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4160662820636352800
 CharacterController:
@@ -328,6 +329,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawDamage: 10
+--- !u!114 &8890448893713719551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160662820636352805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846d3f40ddec2a44da0b6e69f799ec1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceFromCamera: 10
+  maxInteractableDistance: 3
 --- !u!1 &4160662820839921145
 GameObject:
   m_ObjectHideFlags: 0
