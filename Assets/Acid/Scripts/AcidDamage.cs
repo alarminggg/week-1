@@ -9,7 +9,7 @@ public class AcidDamage : MonoBehaviour
 
     void DamageOnTouch()
     {
-        if()
+       
     }
 
 
