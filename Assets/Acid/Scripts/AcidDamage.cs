@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AcidDamage : MonoBehaviour
 {
     [SerializeField]
-    float rawDamage = 100f;
+    float rawDamage = 1000f;
 
-    void DamageOnTouch()
+    private void OnTriggerEnter(Collider other)
     {
-       
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.name == "PlayerObject")
+        {
+            Debug.Log("Player touched acid!");
+            HealthManager playerHealth = other.gameObject.GetComponent<HealthManager>();
+            if (playerHealth != null)
+            {
+                playerHealth.Hit(rawDamage);
+            }
+        }
     }
 }

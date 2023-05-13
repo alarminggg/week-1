@@ -15,7 +15,7 @@ public class HealthManager : MonoBehaviour
         hitPoints = maxHitPoints;
     }
 
-    void Hit(float rawDamage)
+    public void Hit(float rawDamage)
     {
         hitPoints -= rawDamage;
         SetHealthSlider();
@@ -43,7 +43,9 @@ public class HealthManager : MonoBehaviour
 
     void OnDeath()
     {
-        Debug.Log("TODO: GAME OVER - YOU DIED");
+        Debug.Log("GAME OVER - YOU DIED");
         GameManager.Instance.GameOver();
     }
+
+    
 }
