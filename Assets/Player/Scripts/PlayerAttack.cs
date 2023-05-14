@@ -24,9 +24,16 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             cameraTransform = Camera.main.transform;
+            Vector3 raycastOrigin = cameraTransform.position + cameraTransform.forward * 0.5f;
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
-            if(Physics.Raycast(ray, out RaycastHit raycastHit, range))
+            Debug.DrawRay(raycastOrigin, cameraTransform.forward * range, Color.red, 5f);
+
+            int characterLayer = LayerMask.NameToLayer("Character");
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int layerMask = ~(1 << playerLayer);
+
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, range, layerMask))
             {
                 if(raycastHit.transform != null)
                 {
@@ -35,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else
             {
-                Debug.Log("No RaycastHit object found from PLayerAttack");
+                Debug.Log("No RaycastHit object found from PlayerAttack");
             }
         }
     }
