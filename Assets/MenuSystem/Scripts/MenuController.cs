@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] string playScene = "PlayerSandboxScene";
     [SerializeField] string mainMenuScene = "StartScene";
+    [SerializeField] string HowToMenu = "HowToMenu";
 
     [Tooltip("Drag in an options menu panel, if one exists")]
     [SerializeField] GameObject optionsMenuPanel;
@@ -83,5 +84,11 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("QUIT GAME");
         Application.Quit();
+    }
+    
+    public void OpenHowToMenu()
+    {
+        Cursor.visible = true;
+        SceneManager.LoadScene(HowToMenu);
     }
 }

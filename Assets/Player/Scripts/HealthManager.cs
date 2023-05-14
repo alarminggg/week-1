@@ -27,6 +27,8 @@ public class HealthManager : MonoBehaviour
             OnDeath();
         }
     }
+   
+
 
     void SetHealthSlider()
     {
