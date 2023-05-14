@@ -372,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playScene: PlayerSandboxScene
   mainMenuScene: StartScene
+  HowToMenu: HowToMenu
   optionsMenuPanel: {fileID: 2040913824}
   pauseMenuPanel: {fileID: 1072617495}
   IsPauseMenuAvailable: 0
