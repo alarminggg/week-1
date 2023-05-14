@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public HighScoreSystem HighScoreSystem { get; private set; }
 
     private static float secondsSinceStart = 0;
-    private static int score;
+    private static float timeElapsed = 0f;
 
     void Awake()
     {
@@ -33,36 +33,36 @@ public class GameManager : MonoBehaviour
         Instance.UIManager.UpdateTimeUI(secondsSinceStart);
     }
 
-    public static string GetScoreText()
+    public static string GetTimeElapsedText()
     {
-        return score.ToString();
+        return secondsSinceStart.ToString("F2");
     }
 
-    public static void IncrementScore(int value)
+    public static void IncrementTime(float value)
     {
-        score += value;
-        Instance.UIManager.UpdateScoreUI(score);
-        Debug.Log("Score: " + score);
+        timeElapsed += value;
+        Instance.UIManager.UpdateTimeUI(timeElapsed);
+        Debug.Log("Time Taken: " + timeElapsed);
     }
 
     public static void ResetGame()
     {
-        ResetScore();
+        ResetTime();
         secondsSinceStart = 0f;
     }
 
-    private static void ResetScore()
+    private static void ResetTime()
     {
-        score = 0;
-        Instance.UIManager.UpdateScoreUI(score);
-        Debug.Log("Score: " + score);
+        timeElapsed = 0f;
+        Instance.UIManager.UpdateTimeUI(timeElapsed);
+        Debug.Log("Time Taken: " + timeElapsed);
     }
 
     public void GameOver()
     {
         Time.timeScale = 0f;
-        Instance.UIManager.ActivateEndGame(score);
+        Instance.UIManager.ActivateEndGame(timeElapsed);
         MenuController.IsGamePaused = true;
-        HighScoreSystem.CheckHighScore("anon", score);
+        HighScoreSystem.CheckHighScore("anon", (int)timeElapsed);
     }
 }

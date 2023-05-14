@@ -17,20 +17,16 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdateScoreUI(int value)
-    {
-        scoreValue.text = value.ToString("D5");
-    }
-
     public void UpdateTimeUI(float time)
     {
         int seconds = (int)time;
         timeValue.text = System.TimeSpan.FromSeconds(seconds).ToString("hh':'mm':'ss");
     }
 
-    public void ActivateEndGame(int score)
+    public void ActivateEndGame(float timeElapsed)
     {
-        endScoreValue.text = score.ToString("D5");
+        string timeString = System.TimeSpan.FromSeconds(timeElapsed).ToString("hh':'mm':'ss");
+        endScoreValue.text = timeString;
         gameOverPanel.SetActive(true);
         Cursor.visible = true;
     }
