@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        secondsSinceStart += Time.deltaTime;
-        Instance.UIManager.UpdateTimeUI(secondsSinceStart);
+        timeElapsed += Time.deltaTime;
+        Instance.UIManager.UpdateTimeUI(timeElapsed);
     }
 
     public static string GetTimeElapsedText()
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public static void ResetGame()
     {
         ResetTime();
-        secondsSinceStart = 0f;
+        timeElapsed = 0f;
     }
 
     private static void ResetTime()
